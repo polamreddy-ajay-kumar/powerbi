@@ -1,0 +1,10 @@
+Month,Revenue,Orders,Customers,Channel
+Jan,81000,180,92,Direct
+Feb,92000,210,105,Organic
+Mar,105000,245,121,Direct
+Apr,98000,231,114,Referral
+May,113000,267,139,Organic
+Jun,121000,289,152,Direct
+Jul,128000,302,168,Social
+Aug,137000,318,176,Direct
+Sep,145000,337,190,Organic

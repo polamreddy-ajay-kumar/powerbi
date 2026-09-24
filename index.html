@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="InsightBoard - a Power BI inspired analytics dashboard" />
+  <title>InsightBoard | Analytics Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">◆</span><span>Insight<span class="brand-accent">Board</span></span></div>
+      <div class="workspace-label">WORKSPACE</div>
+      <button class="workspace-select"><span class="workspace-icon">A</span><span>Ajay's workspace</span><span>⌄</span></button>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="overview">▦ <span>Overview</span></button>
+        <button class="nav-item" data-view="reports">▤ <span>Reports</span></button>
+        <button class="nav-item" data-view="datasets">◈ <span>Datasets</span></button>
+      </nav>
+      <div class="sidebar-section"><div class="section-heading">FAVORITES <button id="addFavorite">+</button></div><div id="favorites" class="favorite-list"><div class="empty-mini">No favorites yet</div></div></div>
+      <div class="sidebar-section"><div class="section-heading">RECENT</div><div class="recent-item">▤ Executive Overview</div><div class="recent-item">◈ Sales dataset</div></div>
+      <div class="sidebar-bottom"><button class="nav-item">⚙ <span>Settings</span></button><button class="user-profile"><span class="avatar">AK</span><span><b>Ajay Kumar</b><small>Administrator</small></span><span>⋮</span></button></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><div class="breadcrumbs"><span>Workspace</span><b>/</b><strong id="pageTitle">Overview</strong></div><div class="top-actions"><button class="icon-button" title="Notifications">♢<i></i></button><button class="help-button">? <span>Help</span></button><button class="primary-button" id="newReport">＋ New report</button></div></header>
+      <section class="page-view" id="overviewView">
+        <div class="page-intro"><div><p class="eyebrow">THURSDAY, SEPTEMBER 24, 2026</p><h1>Good morning, Ajay <span>✦</span></h1><p class="muted">Here’s what’s happening across your workspace today.</p></div><div class="intro-actions"><button class="secondary-button" id="uploadButton">⇧ Import data</button><input id="fileInput" type="file" accept=".csv,.json" hidden><button class="secondary-button" id="editDashboard">✎ Edit dashboard</button></div></div>
+        <div class="stats-grid"><article class="stat-card"><div class="stat-top"><span>Total revenue</span><span class="stat-icon purple">$</span></div><strong id="totalRevenue">$128,430</strong><div class="trend positive">↗ 12.8% <span>vs. last month</span></div></article><article class="stat-card"><div class="stat-top"><span>Orders</span><span class="stat-icon blue">▣</span></div><strong id="totalOrders">2,847</strong><div class="trend positive">↗ 8.4% <span>vs. last month</span></div></article><article class="stat-card"><div class="stat-top"><span>Customers</span><span class="stat-icon green">♙</span></div><strong id="totalCustomers">1,429</strong><div class="trend positive">↗ 5.2% <span>vs. last month</span></div></article><article class="stat-card"><div class="stat-top"><span>Conversion rate</span><span class="stat-icon orange">%</span></div><strong>3.84%</strong><div class="trend negative">↘ 1.1% <span>vs. last month</span></div></article></div>
+        <div class="dashboard-grid"><article class="panel revenue-panel"><div class="panel-header"><div><h2>Revenue overview</h2><p class="muted">Monthly performance across all channels</p></div><div class="panel-controls"><select id="periodSelect"><option>Last 12 months</option><option>Last 6 months</option><option>This year</option></select><button class="more-button">•••</button></div></div><div class="chart-wrap"><canvas id="revenueChart"></canvas></div></article><article class="panel channels-panel"><div class="panel-header"><div><h2>Sales by channel</h2><p class="muted">Where your revenue comes from</p></div><button class="more-button">•••</button></div><div class="doughnut-wrap"><canvas id="channelChart"></canvas><div class="chart-center"><strong>100%</strong><small>Total sales</small></div></div><div class="legend" id="channelLegend"></div></article><article class="panel activity-panel"><div class="panel-header"><div><h2>Recent activity</h2><p class="muted">Latest updates in your workspace</p></div><button class="link-button">View all</button></div><div class="activity-list"><div class="activity"><span class="activity-avatar purple-bg">AK</span><div><b>Ajay updated Executive Overview</b><small>Added a revenue comparison chart</small></div><time>12 min ago</time></div><div class="activity"><span class="activity-avatar blue-bg">MS</span><div><b>Sales dataset was refreshed</b><small>2,847 rows processed successfully</small></div><time>1 hr ago</time></div><div class="activity"><span class="activity-avatar orange-bg">RK</span><div><b>Report shared with Marketing</b><small>“Q3 Campaign Performance”</small></div><time>3 hrs ago</time></div><div class="activity"><span class="activity-avatar green-bg">+</span><div><b>New team member joined</b><small>Ravi Kumar accepted your invite</small></div><time>Yesterday</time></div></div></article><article class="panel performance-panel"><div class="panel-header"><div><h2>Top products</h2><p class="muted">By revenue this month</p></div><button class="link-button">See all</button></div><div class="product-list"><div class="product"><span class="product-rank">01</span><span class="product-color p1"></span><div><b>Enterprise plan</b><small>312 subscriptions</small></div><strong>$42,890</strong></div><div class="product"><span class="product-rank">02</span><span class="product-color p2"></span><div><b>Professional plan</b><small>486 subscriptions</small></div><strong>$31,240</strong></div><div class="product"><span class="product-rank">03</span><span class="product-color p3"></span><div><b>Starter plan</b><small>721 subscriptions</small></div><strong>$18,760</strong></div><div class="product"><span class="product-rank">04</span><span class="product-color p4"></span><div><b>Consulting</b><small>84 projects</small></div><strong>$12,430</strong></div></div></article></div>
+      </section>
+      <section class="page-view hidden" id="datasetsView"><div class="page-intro"><div><p class="eyebrow">DATA MANAGEMENT</p><h1>Datasets</h1><p class="muted">Import and manage the data powering your reports.</p></div><button class="primary-button" id="datasetUpload">＋ Import dataset</button></div><div class="dataset-card panel"><div class="empty-state" id="datasetEmpty"><div class="empty-icon">◈</div><h2>No imported datasets</h2><p>Upload a CSV or JSON file to start exploring your data.</p><button class="primary-button" id="emptyUpload">Choose a file</button></div><div id="datasetTable" class="hidden"></div></div></section>
+      <section class="page-view hidden" id="reportsView"><div class="page-intro"><div><p class="eyebrow">WORKSPACE CONTENT</p><h1>Reports</h1><p class="muted">Build and share interactive reports with your team.</p></div><button class="primary-button" id="newReport2">＋ New report</button></div><div class="report-cards"><div class="report-card panel"><div class="report-preview"><span>▥</span><b>Executive Overview</b></div><div class="report-info"><b>Executive Overview</b><small>Updated 12 minutes ago · You</small><button class="secondary-button open-report">Open report</button></div></div><div class="report-card panel"><div class="report-preview blue-preview"><span>◒</span><b>Q3 Campaign Performance</b></div><div class="report-info"><b>Q3 Campaign Performance</b><small>Updated yesterday · Marketing</small><button class="secondary-button open-report">Open report</button></div></div><div class="report-card panel create-card" id="createReport"><div>＋</div><b>Create a new report</b><small>Start from a blank canvas</small></div></div></section>
+    </main>
+  </div>
+  <div id="toast" class="toast"></div>
+  <div id="modal" class="modal-backdrop hidden"><div class="modal"><button class="modal-close" id="modalClose">×</button><h2>Create a report</h2><p class="muted">Give your new report a name to get started.</p><label>Report name<input id="reportName" placeholder="e.g. Monthly sales report"></label><div class="modal-actions"><button class="secondary-button" id="cancelModal">Cancel</button><button class="primary-button" id="createModal">Create report</button></div></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
